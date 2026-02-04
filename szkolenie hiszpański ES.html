@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>ELMAR - Formación Inicial COMPLETA</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0066FF;
+            --secondary-blue: #004CE8;
+            --accent-cyan: #00FFFF;
+            --accent-yellow: #FFD700;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-cyber: linear-gradient(135deg, #00FFFF 0%, #0066FF 50%, #8A2BE2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow-glow: 0 0 40px rgba(0, 255, 255, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Login Screen */
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        .login-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+            width: 100%;
+            animation: slideInUp 1s ease-out, glow 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--accent-cyan), transparent);
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+        }
+
+        .login-container::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: rgba(10, 10, 10, 0.9);
+            border-radius: 27px;
+            z-index: -1;
+        }
+
+        @keyframes slideInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px) scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), var(--shadow-glow); }
+            50% { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 60px rgba(0, 255, 255, 0.5); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .logo-fish {
+            font-size: 5rem;
+            margin-right: 20px;
+            animation: swim 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--accent-cyan));
+        }
+
+        .logo-text {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--gradient-cyber);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Space Grotesk', sans-serif;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            animation: textPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes swim {
+            0%, 100% { transform: translateX(0px) rotate(0deg) scale(1); }
+            25% { transform: translateX(10px) rotate(2deg) scale(1.05); }
+            75% { transform: translateX(-5px) rotate(-1deg) scale(0.95); }
+        }
+
+        @keyframes textPulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 50px;
+            font-weight: 300;
+            background: linear-gradient(45deg, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            text-align: left;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 20px 25px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1.1rem;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 22px 40px;
+            border: none;
+            border-radius: 25px;
+            background: var(--gradient-cyber);
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Training Container */
+        .training-container {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            min-height: 100vh;
+            padding: 120px 40px 120px 40px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 4rem;
+            background: var(--gradient-cyber);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            animation: titleGlow 2s ease-in-out infinite;
+            line-height: 1.2;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .big-text {
+            font-size: 2rem;
+            margin: 30px 0;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 35px 60px;
+            border-radius: 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 40px auto;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            animation: highlightPulse 3s ease-in-out infinite;
+            max-width: 90%;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .temperature-danger {
+            background: linear-gradient(135deg, #FF3366, #FF6B6B);
+            padding: 50px;
+            border-radius: 30px;
+            margin: 40px auto;
+            font-size: 2rem;
+            font-weight: 800;
+            box-shadow: 0 30px 70px rgba(255, 51, 102, 0.4);
+            animation: dangerPulse 2s ease-in-out infinite;
+            max-width: 90%;
+        }
+
+        @keyframes dangerPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 20px 50px rgba(255, 51, 102, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 25px 60px rgba(255, 51, 102, 0.5); }
+        }
+
+        .icon {
+            font-size: 5rem;
+            margin: 30px 0;
+            filter: drop-shadow(0 0 30px var(--accent-cyan));
+            animation: iconFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin: 50px auto;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        .step {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .step:hover::before {
+            opacity: 0.1;
+        }
+
+        .step:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(0, 255, 255, 0.2);
+        }
+
+        .step-number {
+            background: var(--gradient-cyber);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            animation: numberPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes numberPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: var(--gradient-cyber);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        .warning-box, .success-box {
+            padding: 35px;
+            border-radius: 25px;
+            margin: 30px auto;
+            font-weight: 700;
+            font-size: 1.6rem;
+            position: relative;
+            overflow: hidden;
+            animation: boxGlow 3s ease-in-out infinite;
+            max-width: 90%;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #FF3366, #FF6B6B);
+            box-shadow: 0 20px 50px rgba(255, 51, 102, 0.3);
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #00FF88, #00CC66);
+            box-shadow: 0 20px 50px rgba(0, 255, 136, 0.3);
+        }
+
+        @keyframes boxGlow {
+            0%, 100% { box-shadow: 0 20px 50px rgba(255, 51, 102, 0.3); }
+            50% { box-shadow: 0 25px 60px rgba(255, 51, 102, 0.5); }
+        }
+
+        .logo {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo-small {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--gradient-cyber);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .logo-fish-small {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            animation: swim 3s ease-in-out infinite;
+        }
+
+        .user-info {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: 1px solid var(--glass-border);
+            z-index: 999;
+        }
+
+        .law-info {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-left: 5px solid var(--accent-cyan);
+            padding: 30px;
+            margin: 30px auto;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            text-align: left;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            max-width: 90%;
+        }
+
+        .law-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), transparent);
+            pointer-events: none;
+        }
+
+        /* Quiz Styles */
+        .quiz-question {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .quiz-question:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .question-number {
+            background: var(--gradient-cyber);
+            color: white;
+            min-width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.6;
+            color: white;
+            padding-top: 10px;
+            text-align: left;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-left: 70px;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 18px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-cyan);
+            transform: translateX(10px);
+        }
+
+        .quiz-option input[type="radio"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--accent-cyan);
+            flex-shrink: 0;
+        }
+
+        .option-label {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: white;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .quiz-option input[type="radio"]:checked + .option-label {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        #quizResult {
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            animation: slideInUp 0.5s ease-out;
+            margin: 30px auto;
+            max-width: 900px;
+        }
+
+        #quizResult.success {
+            background: linear-gradient(135deg, #00FF88, #00CC66);
+            color: white;
+            box-shadow: 0 20px 50px rgba(0, 255, 136, 0.3);
+        }
+
+        #quizResult.error {
+            background: linear-gradient(135deg, #FF3366, #FF6B6B);
+            color: white;
+            box-shadow: 0 20px 50px rgba(255, 51, 102, 0.3);
+        }
+
+        .slide-link-btn {
+            background: transparent;
+            color: var(--accent-cyan);
+            border: 2px solid var(--accent-cyan);
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            font-weight: 600;
+        }
+
+        .slide-link-btn:hover {
+            background: var(--accent-cyan);
+            color: #0a0a0a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Completion Screen */
+        .completion-screen {
+            display: none;
+            min-height: 100vh;
+            padding: 60px 20px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .completion-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border-radius: 30px;
+            padding: 70px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.3),
+                0 0 80px rgba(0, 255, 255, 0.2);
+            max-width: 700px;
+            width: 100%;
+            animation: slideInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .completion-icon {
+            font-size: 8rem;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 0 50px var(--accent-cyan));
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) scale(1); }
+            40% { transform: translateY(-30px) scale(1.1); }
+            60% { transform: translateY(-15px) scale(1.05); }
+        }
+
+        .completion-title {
+            font-size: 3rem;
+            background: var(--gradient-cyber);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        .completion-message {
+            font-size: 1.6rem;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .certificate-btn {
+            background: var(--gradient-cyber);
+            color: white;
+            border: none;
+            padding: 25px 50px;
+            border-radius: 25px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .certificate-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .certificate-btn:hover::before {
+            left: 100%;
+        }
+
+        .certificate-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 255, 255, 0.5);
+        }
+
+        .restart-btn {
+            background: transparent;
+            color: var(--accent-cyan);
+            border: 2px solid var(--accent-cyan);
+            padding: 20px 40px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin: 15px;
+            font-weight: 600;
+        }
+
+        .restart-btn:hover {
+            background: var(--accent-cyan);
+            color: #0a0a0a;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.3);
+        }
+
+        #certificateCanvas {
+            display: none;
+        }
+
+        /* Responsive Design - IMPROVED */
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 100px 30px 100px 30px;
+            }
+            
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            .big-text { font-size: 1.7rem; }
+            
+            .user-info {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-container, .completion-container {
+                padding: 40px 25px;
+                margin: 15px;
+            }
+            
+            .slide {
+                padding: 100px 20px 100px 20px;
+            }
+            
+            h1 { 
+                font-size: 2.5rem;
+                line-height: 1.3;
+            }
+            
+            h2 { 
+                font-size: 2rem;
+                line-height: 1.4;
+            }
+            
+            .big-text { 
+                font-size: 1.4rem;
+                line-height: 1.7;
+            }
+            
+            .steps { 
+                grid-template-columns: 1fr; 
+                gap: 25px;
+                padding: 0 10px;
+            }
+            
+            .navigation {
+                bottom: 20px;
+                right: 20px;
+                gap: 10px;
+            }
+            
+            .nav-btn {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+            
+            .logo {
+                top: 20px;
+                left: 20px;
+            }
+            
+            .logo-small {
+                font-size: 1.8rem;
+            }
+            
+            .logo-fish-small {
+                font-size: 2rem;
+            }
+            
+            .slide-counter {
+                top: 20px;
+                right: 20px;
+                font-size: 1.1rem;
+                padding: 12px 20px;
+            }
+            
+            .user-info {
+                position: static;
+                transform: none;
+                margin: 0 auto 20px;
+                width: calc(100% - 40px);
+                max-width: 400px;
+            }
+            
+            .icon {
+                font-size: 3.5rem;
+            }
+            
+            .completion-icon {
+                font-size: 5rem;
+            }
+            
+            .completion-title {
+                font-size: 2.2rem;
+            }
+            
+            .completion-message {
+                font-size: 1.2rem;
+            }
+            
+            .temperature-danger {
+                font-size: 1.6rem;
+                padding: 30px 20px;
+            }
+            
+            .highlight {
+                font-size: 1.2rem;
+                padding: 25px 30px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option-label {
+                font-size: 1.1rem;
+            }
+            
+            .quiz-options {
+                margin-left: 0;
+            }
+            
+            .question-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .law-info {
+                font-size: 1.1rem;
+                padding: 25px;
+            }
+            
+            .logo-large .logo-fish {
+                font-size: 3.5rem;
+                margin-right: 15px;
+            }
+            
+            .logo-large .logo-text {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .certificate-btn {
+                padding: 20px 35px;
+                font-size: 1.2rem;
+            }
+            
+            .form-label {
+                font-size: 1rem;
+            }
+            
+            .form-input {
+                padding: 18px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { 
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            
+            h2 { 
+                font-size: 1.7rem;
+                margin-bottom: 25px;
+            }
+            
+            .big-text { 
+                font-size: 1.2rem;
+            }
+            
+            .slide {
+                padding: 90px 15px 90px 15px;
+            }
+            
+            .step {
+                padding: 30px 20px;
+            }
+            
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+            
+            .highlight {
+                font-size: 1.1rem;
+                padding: 20px 25px;
+            }
+            
+            .temperature-danger {
+                font-size: 1.4rem;
+                padding: 25px 15px;
+            }
+            
+            .nav-btn {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+            }
+            
+            .quiz-question {
+                padding: 20px;
+            }
+            
+            .question-number {
+                min-width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+            
+            .question-text {
+                font-size: 1.1rem;
+            }
+            
+            .option-label {
+                font-size: 1rem;
+            }
+            
+            .law-info {
+                font-size: 1rem;
+                padding: 20px;
+            }
+            
+            .logo-large .logo-fish {
+                font-size: 2.5rem;
+            }
+            
+            .logo-large .logo-text {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .navigation,
+            .logo,
+            .user-info,
+            .slide-counter {
+                display: none !important;
+            }
+            
+            .slide {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="logo-large">
+                <div class="logo-fish">🐟</div>
+                <div class="logo-text">ELMAR</div>
+            </div>
+            <div class="subtitle">Formación Inicial - Seguridad e Higiene</div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="firstName">Nombre</label>
+                    <input type="text" class="form-input" id="firstName" placeholder="Introduce tu nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="lastName">Apellido</label>
+                    <input type="text" class="form-input" id="lastName" placeholder="Introduce tu apellido" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="trainingDate">Fecha de formación</label>
+                    <input type="date" class="form-input" id="trainingDate" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Iniciar Formación</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="training-container" id="trainingContainer">
+        <div class="logo">
+            <div class="logo-fish-small">🐟</div>
+            <div class="logo-small">ELMAR</div>
+        </div>
+        <div class="user-info" id="userInfo"></div>
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">20</span>
+        </div>
+
+        <div class="slide active">
+            <div class="icon fish-icon">🐟</div>
+            <h1>SEGURIDAD ALIMENTARIA</h1>
+            <div class="big-text">Formación inicial para nuevos empleados</div>
+            <div class="highlight cyber-border">
+                <strong>Procesado de Pescado ELMAR - Programa Completo</strong>
+            </div>
+            <p style="font-size: 1.4rem; margin-top: 50px; opacity: 0.9; font-weight: 300;">
+                Su salud y la de los consumidores en sus manos
+            </p>
+        </div>
+
+        <div class="slide">
+            <div class="icon">⚖️</div>
+            <h2>BASE LEGAL DE LA FORMACIÓN</h2>
+            <div class="law-info">
+                <strong>Reglamento (CE) Nº 852/2004 - Capítulo XII "FORMACIÓN":</strong><br><br>
+                Los operadores de empresa alimentaria deberán garantizar:<br>
+                • La <strong>supervisión y la instrucción o formación</strong> de los manipuladores de productos alimenticios<br>
+                • Que quienes tengan a su cargo el desarrollo y mantenimiento del sistema APPCC <strong>hayan recibido una formación adecuada</strong><br>
+                • El <strong>cumplimiento de todos los requisitos</strong> de la legislación nacional
+            </div>
+            <div class="highlight cyber-border">
+                Esta formación es <strong>OBLIGATORIA</strong> según la legislación de la UE
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">⚠️</div>
+            <h2>¿POR QUÉ ES TAN IMPORTANTE?</h2>
+            <div class="warning-box">
+                ¡Una bacteria puede multiplicarse hasta 16 millones en 8 horas!
+            </div>
+            <div class="big-text">
+                El pescado es un producto <strong style="color: var(--accent-cyan);">MUY PERECEDERO</strong>
+            </div>
+            <div class="highlight cyber-border">
+                Su trabajo protege la salud de miles de personas cada día
+            </div>
+            <div class="law-info">
+                <strong>En manos sucias:</strong> 10 millones de bacterias/cm²<br>
+                <strong>Después de lavar:</strong> 100.000 bacterias/cm²<br>
+                <strong>Después de desinfectar:</strong> 10 bacterias/cm²
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">🔬</div>
+            <h2>¿QUÉ ES EL APPCC?</h2>
+            <div class="big-text">
+                <strong style="color: var(--accent-cyan);">APPCC</strong> = Análisis de Peligros y Puntos de Control Crítico
+            </div>
+            <div class="highlight cyber-border">
+                (HACCP = Hazard Analysis and Critical Control Points)
+            </div>
+            <div class="big-text" style="font-size: 1.6rem; margin: 40px auto; max-width: 900px;">
+                Es un sistema que <strong>identifica, evalúa y controla</strong> los peligros para la seguridad alimentaria
+            </div>
+            <div class="success-box">
+                RECUERDE: "LO QUE NO ESTÁ ESCRITO, NO ESTÁ HECHO"
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">☣️</div>
+            <h2>TIPOS DE PELIGROS</h2>
+            <div class="steps">
+                <div class="step" style="background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 107, 107, 0.2)); border-color: #FF3366;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FF3366, #FF6B6B);">🦠</div>
+                    <strong style="font-size: 1.4rem;">BIOLÓGICOS</strong><br><br>
+                    Bacterias (Salmonella, Listeria)<br>
+                    Parásitos (Anisakis)<br>
+                    Histamina
+                </div>
+                <div class="step" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2)); border-color: #FFD700;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FFD700, #FFA500);">⚗️</div>
+                    <strong style="font-size: 1.4rem;">QUÍMICOS</strong><br><br>
+                    Productos de limpieza<br>
+                    Metales pesados<br>
+                    Toxinas naturales
+                </div>
+                <div class="step" style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(102, 126, 234, 0.2)); border-color: #8A2BE2;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #8A2BE2, #667eea);">🔩</div>
+                    <strong style="font-size: 1.4rem;">FÍSICOS</strong><br><br>
+                    Trozos de vidrio<br>
+                    Metal, espinas<br>
+                    Cuerpos extraños
+                </div>
+            </div>
+            <div class="warning-box">
+                ¡Cada empleado debe reconocer y eliminar estos peligros!
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">🎯</div>
+            <h2>PUNTOS DE CONTROL EN ELMAR</h2>
+            <div class="big-text">
+                <strong style="color: #FFD700;">PC</strong> = Punto de Control<br>
+                <strong style="color: #FF3366;">PCC</strong> = Punto de Control Crítico
+            </div>
+            <div class="steps">
+                <div class="step" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2)); border-color: #FFD700;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FFD700, #FFA500); color: #0a0a0a;">PC</div>
+                    <strong style="font-size: 1.3rem;">DESCONGELACIÓN</strong><br><br>
+                    Temperatura final<br>
+                    <strong style="color: #FFD700;">MÁX +4°C</strong>
+                </div>
+                <div class="step" style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2)); border-color: #FFD700;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FFD700, #FFA500); color: #0a0a0a;">PC</div>
+                    <strong style="font-size: 1.3rem;">MARINADO</strong><br><br>
+                    Tiempo: 24h-72h<br>
+                    Temp: <strong style="color: #FFD700;">MÁX +14°C</strong>
+                </div>
+            </div>
+            <div class="steps" style="margin-top: 30px;">
+                <div class="step" style="background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 107, 107, 0.2)); border-color: #FF3366;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FF3366, #FF6B6B);">PCC</div>
+                    <strong style="font-size: 1.3rem;">AHUMADO</strong><br><br>
+                    Temperatura<br>
+                    <strong style="color: #FF3366;">MÍN 72°C en el centro</strong>
+                </div>
+                <div class="step" style="background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 107, 107, 0.2)); border-color: #FF3366;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FF3366, #FF6B6B);">PCC</div>
+                    <strong style="font-size: 1.3rem;">FRITURA</strong><br><br>
+                    Temperatura del aceite<br>
+                    <strong style="color: #FF3366;">MÍN 180°C</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">🌡️</div>
+            <h2>REGLA DE ORO DE LA TEMPERATURA</h2>
+            <div class="temperature-danger">
+                <div style="font-size: 4rem; margin-bottom: 25px; font-weight: 800;">4°C</div>
+                <div style="font-size: 1.8rem;">TEMPERATURA DE REFRIGERACIÓN</div>
+                <div style="margin-top: 25px; font-size: 1.6rem;">¡Más alto = PELIGRO!</div>
+            </div>
+            <div class="big-text">
+                Recuerde: <span style="color: var(--accent-cyan);">Frío = Seguro</span>
+            </div>
+            <div class="law-info">
+                <strong>Requisito legal:</strong> Reg. (CE) 853/2004 - los productos de la pesca deben almacenarse a una temperatura próxima a la de fusión del hielo (0°C a 4°C)
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">🏥</div>
+            <h2>REQUISITOS DE SALUD</h2>
+            <div class="warning-box">
+                ¡NO PUEDE TRABAJAR SI ESTÁ ENFERMO!
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">📋</div>
+                    <strong>CERTIFICADO MÉDICO</strong><br>Obligatorio antes de empezar a trabajar
+                </div>
+                <div class="step">
+                    <div class="step-number">🤒</div>
+                    <strong>SÍNTOMAS DE ENFERMEDAD</strong><br>Fiebre, diarrea, vómitos, dolor de garganta, goteo nasal
+                </div>
+                <div class="step">
+                    <div class="step-number">🩹</div>
+                    <strong>HERIDAS Y CORTES</strong><br>Deben estar cubiertos con un apósito
+                </div>
+            </div>
+            <div class="law-info">
+                <strong>Base legal:</strong> Ley polaca de 25.08.2006, art. 59 - obligación de tener un certificado médico para fines sanitarios-epidemiológicos<br><br>
+                <strong>Hecho:</strong> ¡El 40% de los adultos son portadores de Staphylococcus aureus!
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">👏</div>
+            <h2>MANOS LIMPIAS = ALIMENTOS SEGUROS</h2>
+            <div class="big-text" style="font-size: 1.7rem; margin-bottom: 30px;">
+                <strong style="color: #FF3366;">Manos sucias: 10.000.000 bacterias/cm²</strong><br>
+                <strong style="color: #FFD700;">Después de lavar: 100.000 bacterias/cm²</strong><br>
+                <strong style="color: #00FF88;">Después de desinfectar: 10 bacterias/cm²</strong>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <strong>SIEMPRE</strong><br>antes de trabajar
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <strong>SIEMPRE</strong><br>después de un descanso
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <strong>SIEMPRE</strong><br>después de tocar algo sucio
+                </div>
+            </div>
+            <div class="highlight cyber-border">
+                Mínimo 20 segundos de lavado + desinfectante
+            </div>
+            <div class="warning-box">
+                ¡LOS GUANTES NO EXIMEN DE LAVARSE LAS MANOS!
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">👕</div>
+            <h2>ROPA DE PROTECCIÓN</h2>
+            <div class="big-text">Su <span style="color: var(--accent-cyan);">ARMADURA</span> contra la contaminación</div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <strong>GORRO/REDECILLA</strong><br>cubre el cabello completamente
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <strong>BATA/DELANTAL</strong><br>ropa de trabajo limpia
+                </div>
+                <div class="step">
+                    <div class="step-number">✓</div>
+                    <strong>GUANTES</strong><br>cuando se requiera, cambiados frecuentemente
+                </div>
+            </div>
+            <div class="warning-box">
+                ¡Ropa sucia = Transferencia de bacterias a los alimentos!
+            </div>
+            <div class="law-info">
+                <strong>Importante:</strong> En ropa seca, las bacterias viven 4h, ¡en ropa mojada - 24h!<br>
+                ¡Después del lavado manual - cambie la ropa de trabajo!
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">🚫</div>
+            <h2>¡NUNCA HAGA ESTO!</h2>
+            <div class="steps">
+                <div class="step" style="background: rgba(255, 51, 102, 0.2); border-color: #FF3366;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FF3366, #FF6B6B);">❌</div>
+                    <strong>NO</strong> coma durante el trabajo
+                </div>
+                <div class="step" style="background: rgba(255, 51, 102, 0.2); border-color: #FF3366;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FF3366, #FF6B6B);">❌</div>
+                    <strong>NO</strong> se toque la cara
+                </div>
+                <div class="step" style="background: rgba(255, 51, 102, 0.2); border-color: #FF3366;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FF3366, #FF6B6B);">❌</div>
+                    <strong>NO</strong> trabaje enfermo
+                </div>
+            </div>
+            <div class="steps">
+                <div class="step" style="background: rgba(255, 51, 102, 0.2); border-color: #FF3366;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FF3366, #FF6B6B);">❌</div>
+                    <strong>NO</strong> lleve joyas, reloj
+                </div>
+                <div class="step" style="background: rgba(255, 51, 102, 0.2); border-color: #FF3366;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FF3366, #FF6B6B);">❌</div>
+                    <strong>NO</strong> use el teléfono
+                </div>
+                <div class="step" style="background: rgba(255, 51, 102, 0.2); border-color: #FF3366;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #FF3366, #FF6B6B);">❌</div>
+                    <strong>NO</strong> fume cigarrillos
+                </div>
+            </div>
+            <div class="warning-box">
+                ¡Estos errores pueden contaminar toda la producción!
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">🏭</div>
+            <h2>PLANTA ELMAR - NUESTROS PROCESOS</h2>
+            <div class="big-text">
+                Producimos <strong style="color: var(--accent-cyan);">60 toneladas</strong> de productos por semana
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <strong>PRODUCTOS SALADOS</strong><br>20 toneladas/semana
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <strong>PRODUCTOS MARINADOS</strong><br>18 toneladas/semana
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <strong>PRODUCTOS AHUMADOS</strong><br>18 toneladas/semana
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <strong>OTROS PRODUCTOS</strong><br>4 toneladas/semana
+                </div>
+            </div>
+            <div class="highlight cyber-border">
+                Materias primas principales: caballa, arenque, salmón, bacalao
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">❄️</div>
+            <h2>PROCEDIMIENTO DE DESCONGELACIÓN</h2>
+            <div class="big-text" style="font-size: 1.6rem; color: #FFD700;">
+                PC - Punto de Control: Temperatura MÁX +4°C
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <strong>RECEPCIÓN</strong><br>Materia prima congelada -18°C a -20°C
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <strong>TRANSPORTE</strong><br>A la sala de descongelación
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <strong>DESCONGELACIÓN</strong><br>6-12 horas hasta temp. máx +4°C
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <strong>CONTROL</strong><br>Medición con termómetro calibrado
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <strong>REGISTRO</strong><br>Anotación en la hoja de control
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <strong>A PRODUCCIÓN</strong><br>Inmediatamente después de descongelar
+                </div>
+            </div>
+            <div class="warning-box">
+                ¡Temperatura >+6°C = Parar y avisar al Controlador de Calidad!
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">🔥</div>
+            <h2>AHUMADO Y TRATAMIENTO TÉRMICO</h2>
+            <div class="temperature-danger">
+                <div style="font-size: 4rem; margin-bottom: 25px; font-weight: 800;">72°C</div>
+                <div style="font-size: 1.8rem;">PCC - TEMPERATURA MÍNIMA</div>
+                <div style="margin-top: 25px; font-size: 1.6rem;">¡EN EL CENTRO DEL PRODUCTO!</div>
+            </div>
+            <div class="big-text">
+                Aplica a: <strong style="color: var(--accent-cyan);">Ahumado • Horneado • Fritura</strong>
+            </div>
+            <div class="highlight cyber-border">
+                ¡Esta temperatura mata las bacterias patógenas!
+            </div>
+            <div class="law-info">
+                <strong>Control PCC:</strong><br>
+                • Medición de temperatura con termómetro de sonda<br>
+                • Registro en la hoja de control PCC<br>
+                • Verificación de cada lote de producción
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">🧽</div>
+            <h2>LIMPIEZA Y DESINFECCIÓN - 3 PASOS</h2>
+            <div class="steps">
+                <div class="step" style="background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 102, 255, 0.2)); border-color: #00FFFF;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #00FFFF, #0066FF); color: #0a0a0a;">1</div>
+                    <strong style="font-size: 1.5rem;">LIMPIEZA (EN SECO)</strong><br><br>
+                    Eliminar residuos visibles<br>
+                    Con cepillos de plástico<br>
+                    Aclarar con agua (si es necesario)
+                </div>
+                <div class="step" style="background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 102, 255, 0.2)); border-color: #00FFFF;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #00FFFF, #0066FF); color: #0a0a0a;">2</div>
+                    <strong style="font-size: 1.5rem;">LAVADO</strong><br><br>
+                    Con detergente según instrucciones<br>
+                    Temperatura y tiempo adecuados<br>
+                    Aclarado profundo
+                </div>
+                <div class="step" style="background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(0, 102, 255, 0.2)); border-color: #00FFFF;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #00FFFF, #0066FF); color: #0a0a0a;">3</div>
+                    <strong style="font-size: 1.5rem;">DESINFECCIÓN</strong><br><br>
+                    Con desinfectante<br>
+                    Tiempo de contacto especificado<br>
+                    Dejar secar
+                </div>
+            </div>
+            <div class="success-box">
+                ¡Solo 3 pasos garantizan la seguridad total!
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">♻️</div>
+            <h2>SPOA - SUBPRODUCTOS ANIMALES</h2>
+            <div class="big-text">
+                <strong style="color: var(--accent-cyan);">SPOA</strong> = Subproductos de Origen Animal
+            </div>
+            <div class="highlight cyber-border">
+                En ELMAR: Principalmente residuos CATEGORÍA 3
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <strong>SEGREGACIÓN</strong><br>En el puesto de trabajo
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <strong>CONTENEDORES</strong><br>Etiquetados "SPOA CAT-3"
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <strong>TRANSPORTE</strong><br>Al almacén SPOA (salida norte)
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <strong>RECOGIDA</strong><br>Planta STABO en Łapy
+                </div>
+            </div>
+            <div class="law-info">
+                <strong>Requisito:</strong> Documentar todas las operaciones con SPOA<br>
+                <strong>Almacenamiento:</strong> Condiciones refrigeradas
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">✨</div>
+            <h2>PUESTO DE TRABAJO LIMPIO</h2>
+            <div class="big-text">
+                <span style="color: var(--accent-cyan);">LIMPIAR</span> = <span style="color: #00FF88;">PROTEGER</span>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <strong>ANTES</strong><br>de empezar a trabajar
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <strong>DURANTE</strong><br>si se ensucia
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <strong>DESPUÉS</strong><br>de terminar el trabajo
+                </div>
+            </div>
+            <div class="success-box">
+                Herramientas y superficies limpias = Producto seguro
+            </div>
+            <div class="law-info">
+                <strong>Requisito APPCC:</strong> Aplicar el programa de sanidad aprobado según los procedimientos de la planta
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">📝</div>
+            <h2>DOCUMENTACIÓN - REGISTROS</h2>
+            <div class="warning-box">
+                "LO QUE NO ESTÁ ESCRITO, NO ESTÁ HECHO"
+            </div>
+            <div class="big-text" style="font-size: 1.6rem; margin: 40px auto; max-width: 900px;">
+                Cada medición de temperatura, cada control <strong style="color: var(--accent-cyan);">DEBE SER REGISTRADO</strong> en la hoja de control
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">📊</div>
+                    <strong>HOJA DE CONTROL</strong><br>Rellenar de forma legible y al momento
+                </div>
+                <div class="step">
+                    <div class="step-number">🌡️</div>
+                    <strong>MEDICIONES</strong><br>Fecha, hora, valor, firma
+                </div>
+                <div class="step">
+                    <div class="step-number">⚠️</div>
+                    <strong>NO CONFORMIDADES</strong><br>Informar al supervisor inmediatamente
+                </div>
+            </div>
+            <div class="highlight cyber-border">
+                ¡Los registros son la PRUEBA de nuestro trabajo correcto!
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="icon">🏆</div>
+            <h2>RECUERDE SIEMPRE</h2>
+            <div class="steps">
+                <div class="step" style="background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 204, 102, 0.2)); border-color: #00FF88;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #00FF88, #00CC66); color: #0a0a0a;">🌡️</div>
+                    <strong>FRÍO</strong><br>Temperatura 4°C
+                </div>
+                <div class="step" style="background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 204, 102, 0.2)); border-color: #00FF88;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #00FF88, #00CC66); color: #0a0a0a;">👏</div>
+                    <strong>MANOS LIMPIAS</strong><br>Lavar regularmente
+                </div>
+                <div class="step" style="background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 204, 102, 0.2)); border-color: #00FF88;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #00FF88, #00CC66); color: #0a0a0a;">👕</div>
+                    <strong>ROPA</strong><br>Siempre limpia
+                </div>
+                <div class="step" style="background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 204, 102, 0.2)); border-color: #00FF88;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #00FF88, #00CC66); color: #0a0a0a;">📝</div>
+                    <strong>REGISTROS</strong><br>Documentar todo
+                </div>
+            </div>
+            <div class="highlight cyber-border" style="font-size: 2rem; padding: 40px 60px;">
+                <strong>¡USTED ES EL GUARDIÁN DE LA SEGURIDAD ALIMENTARIA!</strong>
+            </div>
+            <p style="font-size: 1.5rem; margin-top: 40px; font-weight: 400;">
+                ¿Preguntas? ¡Pregunte siempre a su supervisor o al Especialista APPCC!
+            </p>
+        </div>
+
+        <div class="slide">
+            <div class="icon">📝</div>
+            <h2>TEST DE VERIFICACIÓN</h2>
+            <div class="big-text" style="font-size: 1.8rem; margin-bottom: 40px;">
+                ¡Compruebe sus conocimientos!<br>
+                <span style="color: var(--accent-cyan); font-size: 1.4rem;">Requerido: 10/12 respuestas correctas (mín. 83%)</span>
+            </div>
+            
+            <div id="quizContainer" style="max-width: 900px; margin: 0 auto; text-align: left;">
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">1</span>
+                        <span class="question-text">¿Cuál es la temperatura máxima de almacenamiento de pescado en ELMAR?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="A">
+                            <span class="option-label">A) 8°C</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="B">
+                            <span class="option-label">B) 4°C</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="C">
+                            <span class="option-label">C) 10°C</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q1" value="D">
+                            <span class="option-label">D) 0°C</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">2</span>
+                        <span class="question-text">¿Qué significa APPCC (HACCP)?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="A">
+                            <span class="option-label">A) Plan de Análisis y Control Higiénico</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="B">
+                            <span class="option-label">B) Análisis de Peligros y Puntos de Control Crítico</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="C">
+                            <span class="option-label">C) Procedimiento de Control de Salud y Limpieza</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q2" value="D">
+                            <span class="option-label">D) Protocolo de Higiene y Control Crítico</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">3</span>
+                        <span class="question-text">¿Cuántas bacterias hay en las manos sucias (por 1 cm²)?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="A">
+                            <span class="option-label">A) 1 millón de bacterias</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="B">
+                            <span class="option-label">B) 10 millones de bacterias</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="C">
+                            <span class="option-label">C) 100.000 bacterias</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q3" value="D">
+                            <span class="option-label">D) 10.000 bacterias</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">4</span>
+                        <span class="question-text">¿Cuál es la temperatura mínima del PCC al ahumar pescado (en el centro del producto)?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="A">
+                            <span class="option-label">A) 60°C</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="B">
+                            <span class="option-label">B) 72°C</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="C">
+                            <span class="option-label">C) 80°C</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q4" value="D">
+                            <span class="option-label">D) 65°C</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">5</span>
+                        <span class="question-text">¿Cuál de las siguientes situaciones SIEMPRE requiere lavarse y desinfectarse las manos?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="A">
+                            <span class="option-label">A) Después de una llamada telefónica</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="B">
+                            <span class="option-label">B) Después de volver de un descanso, antes de empezar a trabajar de nuevo</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="C">
+                            <span class="option-label">C) Después de caminar por un pasillo</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q5" value="D">
+                            <span class="option-label">D) Después de mirar el reloj</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">6</span>
+                        <span class="question-text">¿Qué debe hacer un empleado si nota que tiene fiebre o diarrea?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="A">
+                            <span class="option-label">A) No venir a trabajar e informar a su supervisor</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="B">
+                            <span class="option-label">B) Venir a trabajar, pero llevar mascarilla</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="C">
+                            <span class="option-label">C) Venir y evitar el contacto con el producto</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q6" value="D">
+                            <span class="option-label">D) Esperar al final del día y evaluar su estado de salud</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">7</span>
+                        <span class="question-text">¿Cuál es la temperatura final MÁXIMA de la materia prima tras la descongelación (PC)?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q7" value="A">
+                            <span class="option-label">A) +2°C</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q7" value="B">
+                            <span class="option-label">B) +4°C</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q7" value="C">
+                            <span class="option-label">C) +6°C</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q7" value="D">
+                            <span class="option-label">D) +8°C</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">8</span>
+                        <span class="question-text">¿Cuántos pasos tiene el procedimiento de limpieza y desinfección de equipos?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q8" value="A">
+                            <span class="option-label">A) 2 pasos: lavado y desinfección</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q8" value="B">
+                            <span class="option-label">B) 3 pasos: limpieza, lavado, desinfección</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q8" value="C">
+                            <span class="option-label">C) 4 pasos: limpieza, lavado, aclarado, desinfección</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q8" value="D">
+                            <span class="option-label">D) 1 paso: basta solo con lavar</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">9</span>
+                        <span class="question-text">¿Qué significa la abreviatura SPOA (Subproductos de Origen Animal)?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q9" value="A">
+                            <span class="option-label">A) Subproductos de Origen Animal</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q9" value="B">
+                            <span class="option-label">B) Parámetros Universales de Trabajo de la Planta</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q9" value="C">
+                            <span class="option-label">C) Plan Establecido de Producción de la Planta</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q9" value="D">
+                            <span class="option-label">D) Procedimientos Útiles del Productor de Alimentos</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">10</span>
+                        <span class="question-text">¿Eximen los guantes de protección al empleado de lavarse las manos?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q10" value="A">
+                            <span class="option-label">A) Sí, los guantes protegen completamente contra las bacterias</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q10" value="B">
+                            <span class="option-label">B) No, las manos siempre deben lavarse antes de ponerse los guantes</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q10" value="C">
+                            <span class="option-label">C) Sí, pero solo si los guantes son nuevos</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q10" value="D">
+                            <span class="option-label">D) Depende del tipo de guantes</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">11</span>
+                        <span class="question-text">¿Cuál de los siguientes NO es un tipo de peligro en el APPCC?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q11" value="A">
+                            <span class="option-label">A) Peligro biológico (bacterias, parásitos)</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q11" value="B">
+                            <span class="option-label">B) Peligro químico (productos de limpieza)</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q11" value="C">
+                            <span class="option-label">C) Peligro físico (trozos de vidrio, metal)</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q11" value="D">
+                            <span class="option-label">D) Peligro económico (costes de producción)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <div class="question-header">
+                        <span class="question-number">12</span>
+                        <span class="question-text">¿Qué significa la regla "LO QUE NO ESTÁ ESCRITO, NO ESTÁ HECHO"?</span>
+                    </div>
+                    <div class="quiz-options">
+                        <label class="quiz-option">
+                            <input type="radio" name="q12" value="A">
+                            <span class="option-label">A) Cada medición y control debe registrarse en la hoja de control</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q12" value="B">
+                            <span class="option-label">B) Un empleado no necesita escribir nada si todo está bien</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q12" value="C">
+                            <span class="option-label">C) Solo el jefe de turno hace los registros</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="q12" value="D">
+                            <span class="option-label">D) La memoria es suficiente, los registros son opcionales</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="certificate-btn" onclick="submitQuiz()" style="width: 100%; margin-top: 40px;">
+                    COMPROBAR RESPUESTAS
+                </button>
+
+                <div id="quizResult" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" onclick="previousSlide()">◄ Anterior</button>
+            <button class="nav-btn" onclick="nextSlide()">Siguiente ►</button>
+        </div>
+    </div>
+
+    <div class="completion-screen" id="completionScreen">
+        <div class="completion-container">
+            <div class="completion-icon">🎓</div>
+            <div class="completion-title">¡FELICIDADES!</div>
+            <div class="completion-message">
+                Ha completado la formación inicial en seguridad alimentaria en la planta ELMAR.<br><br>
+                Ahora forma parte del equipo que vela por la máxima calidad y seguridad de los productos.
+            </div>
+            <button class="certificate-btn" onclick="generateCertificate()">
+                📄 DESCARGAR CONFIRMACIÓN
+            </button>
+            <button class="restart-btn" onclick="restartTraining()">
+                🔄 TERMINAR FORMACIÓN
+            </button>
+        </div>
+    </div>
+
+    <canvas id="certificateCanvas" width="1200" height="800"></canvas>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let userData = {};
+        let quizPassed = false;
+
+        // Set today's date as default
+        document.getElementById('trainingDate').valueAsDate = new Date();
+
+        // Correct answers for 12-question quiz
+        const correctAnswers = {
+            q1: 'B',  // 4°C
+            q2: 'B',  // Análisis de Peligros y Puntos de Control Crítico
+            q3: 'B',  // 10 millones de bacterias
+            q4: 'B',  // 72°C
+            q5: 'B',  // Después de volver de un descanso
+            q6: 'A',  // No venir a trabajar
+            q7: 'B',  // +4°C
+            q8: 'B',  // 3 pasos
+            q9: 'A',  // Subproductos de Origen Animal
+            q10: 'B', // No, las manos deben lavarse
+            q11: 'D', // Peligro económico (no en APPCC)
+            q12: 'A'  // Cada medición debe registrarse
+        };
+
+        // Slide references for quiz questions
+        const slideReferences = {
+            q1: 6,   // Slide 7: Regla de Oro de la Temperatura
+            q2: 3,   // Slide 4: ¿Qué es el APPCC?
+            q3: 8,   // Slide 9: Higiene de manos
+            q4: 13,  // Slide 14: Ahumado - PCC
+            q5: 8,   // Slide 9: Higiene de manos
+            q6: 7,   // Slide 8: Requisitos de salud
+            q7: 12,  // Slide 13: Descongelación
+            q8: 14,  // Slide 15: Limpieza y Desinfección
+            q9: 15,  // Slide 16: SPOA
+            q10: 8,  // Slide 9: Higiene de manos
+            q11: 4,  // Slide 5: Peligros
+            q12: 17  // Slide 18: Documentación
+        };
+     let trainingStartTime = null;
+        let trainingEndTime = null;
+        // Update total slides display
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            userData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                trainingDate: document.getElementById('trainingDate').value
+            };
+
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('trainingContainer').style.display = 'block';
+            
+            document.getElementById('userInfo').textContent = 
+                `${userData.firstName} ${userData.lastName} | ${formatDate(userData.trainingDate)}`;
+            
+            showSlide(0);
+        });
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('es-ES', options);
+        }
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (index >= 0 && index < totalSlides) {
+                currentSlide = index;
+                slides[currentSlide].classList.add('active');
+                document.getElementById('current-slide').textContent = currentSlide + 1;
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide === totalSlides - 1) {
+                // Last slide (quiz) - check if quiz is passed
+                if (quizPassed) {
+                    showCompletionScreen();
+                } else {
+                    alert('Debe aprobar el test de verificación antes de continuar. Requerido: mínimo 10/12 respuestas correctas.');
+                }
+            } else {
+                showSlide(currentSlide + 1);
+            }
+        }
+            trainingStartTime = new Date();
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function showCompletionScreen() {
+            document.getElementById('trainingContainer').style.display = 'none';
+            document.getElementById('completionScreen').style.display = 'flex';
+        }
+
+        function restartTraining() {
+            if (confirm('¿Está seguro de que desea finalizar la formación y volver a la pantalla de inicio?')) {
+                location.reload();
+            }
+        }
+
+        // Submit quiz
+        function submitQuiz() {
+            const form = document.getElementById('quizContainer');
+            let correctCount = 0;
+            let wrongQuestions = [];
+
+            // Check all answers
+            for (let question in correctAnswers) {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (selected && selected.value === correctAnswers[question]) {
+                    correctCount++;
+                } else {
+                    wrongQuestions.push({
+                        question: question,
+                        slideIndex: slideReferences[question]
+                    });
+                }
+            }
+
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.style.display = 'block';
+
+            // Pass threshold: 10 out of 12 (83%)
+            if (correctCount >= 10) {
+                // PASS
+                quizPassed = true;
+                resultDiv.className = 'success';
+                resultDiv.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 20px;">✅</div>
+                    <div style="font-size: 1.8rem; font-weight: 800; margin-bottom: 15px;">
+                        ¡FELICIDADES!
+                    </div>
+                    <div style="font-size: 1.3rem;">
+                        ¡Test aprobado! Resultado: ${correctCount}/12 respuestas correctas (${Math.round(correctCount/12*100)}%)!<br>
+                        Ahora puede continuar y obtener su confirmación de formación.
+                    </div>
+                `;
+                
+                // Scroll to result
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                // FAIL
+                quizPassed = false;
+                const wrongQuestionsNumbers = wrongQuestions.map(wq => {
+                    return parseInt(wq.question.replace('q', ''));
+                }).join(', ');
+
+                resultDiv.className = 'error';
+                resultDiv.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 20px;">❌</div>
+                    <div style="font-size: 1.8rem; font-weight: 800; margin-bottom: 15px;">
+                        Lamentablemente, test no aprobado
+                    </div>
+                    <div style="font-size: 1.3rem; margin-bottom: 25px;">
+                        Resultado: ${correctCount}/12 correctas (${Math.round(correctCount/12*100)}%)<br>
+                        Mínimo requerido: 10/12 (83%)<br>
+                        Respuestas incorrectas en las preguntas: ${wrongQuestionsNumbers}
+                    </div>
+                    <div style="font-size: 1.2rem; margin-bottom: 20px;">
+                        Vuelva a las diapositivas correspondientes y revise:
+                    </div>
+                    <div>
+                        ${wrongQuestions.map(wq => `
+                            <button class="slide-link-btn" onclick="goToSlideAndResetQuiz(${wq.slideIndex})">
+                                Pregunta ${wq.question.replace('q', '')} → Ver diapositiva ${wq.slideIndex + 1}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div style="margin-top: 30px; padding-top: 25px; border-top: 2px solid rgba(255,255,255,0.3);">
+                        <button class="slide-link-btn" onclick="resetQuiz()" style="background: rgba(255,255,255,0.1); border-color: white;">
+                            🔄 Intentar de nuevo
+                        </button>
+                    </div>
+                `;
+
+                // Scroll to result
+                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Go to specific slide and reset quiz
+        function goToSlideAndResetQuiz(slideIndex) {
+            showSlide(slideIndex);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Reset quiz form
+        function resetQuiz() {
+            document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+            document.getElementById('quizResult').style.display = 'none';
+            quizPassed = false;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+// Wyślij dane do PHP
+                fetch("sendmail.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        firstName: userData.firstName,
+                        lastName: userData.lastName,
+                        trainingDate: userData.trainingDate,
+                        trainingEndTime: trainingEndTime.toISOString(),
+                        score: correctCount,
+                        total: Object.keys(correctAnswers).length,
+                        wrong: wrongQuestionsDetails,
+                        duration: duration
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Email wysłany:', data);
+                })
+                .catch(error => {
+                    console.error('Błąd wysyłki emaila:', error);
+                });
+        // Generate certificate
+        function generateCertificate() {
+            const canvas = document.getElementById('certificateCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Background
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#1a1a2e');
+            gradient.addColorStop(0.5, '#16213e');
+            gradient.addColorStop(1, '#0a0a0a');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Border
+            ctx.strokeStyle = '#00FFFF';
+            ctx.lineWidth = 10;
+            ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+
+            // Inner border
+            ctx.strokeStyle = '#0066FF';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(50, 50, canvas.width - 100, canvas.height - 100);
+
+            // Logo text
+            ctx.textAlign = 'center';
+            const logoGradient = ctx.createLinearGradient(0, 150, canvas.width, 150);
+            logoGradient.addColorStop(0, '#00FFFF');
+            logoGradient.addColorStop(0.5, '#0066FF');
+            logoGradient.addColorStop(1, '#8A2BE2');
+            
+            ctx.fillStyle = logoGradient;
+            ctx.font = 'bold 72px "Space Grotesk", Arial';
+            ctx.fillText('ELMAR', canvas.width/2, 150);
+
+            // Main title
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 48px Arial';
+            ctx.fillText('CONFIRMACIÓN DE FORMACIÓN', canvas.width/2, 250);
+
+            // Subtitle
+            ctx.fillStyle = '#00FFFF';
+            ctx.font = '32px Arial';
+            ctx.fillText('Formación inicial en seguridad e higiene alimentaria', canvas.width/2, 310);
+            ctx.fillText('para empleados de producción', canvas.width/2, 350);
+
+            // Participant name
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 40px Arial';
+            const participantName = `${userData.firstName} ${userData.lastName}`;
+            ctx.fillText(participantName, canvas.width/2, 450);
+
+            // Underline for name
+            const nameWidth = ctx.measureText(participantName).width;
+            ctx.strokeStyle = '#00FFFF';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo((canvas.width - nameWidth)/2, 460);
+            ctx.lineTo((canvas.width + nameWidth)/2, 460);
+            ctx.stroke();
+
+            // Date
+            const trainingDate = new Date(userData.trainingDate);
+            const months = [
+                'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+            ];
+            const dateStr = `Fecha de formación: ${trainingDate.getDate()} de ${months[trainingDate.getMonth()]} de ${trainingDate.getFullYear()}`;
+            
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = '24px Arial';
+            ctx.fillText(dateStr, canvas.width/2, 510);
+
+            // Completion message
+            ctx.fillStyle = '#00FF88';
+            ctx.font = 'bold 28px Arial';
+            ctx.fillText('FORMACIÓN COMPLETADA CON ÉXITO', canvas.width/2, 580);
+
+            // Company info
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.font = '15px Arial';
+            ctx.fillText('P.H.U. "ELMAR" Lesiuk sp.j. - Zakład Przetwórstwa Ryb', canvas.width/2, 670);
+            ctx.fillText('desarrollado por: mgr inż. Krzysztof Klebaniuk - Especialista en APPCC y Calidad', canvas.width/2, 700);
+
+            // Add some decorative elements
+            ctx.fillStyle = '#00FFFF';
+            ctx.fillRect(150, 190, 900, 2);  // Linia górna - pod logo ELMAR
+            ctx.fillRect(150, 620, 900, 2);  // Linia dolna - pod komunikatem o ukończeniu
+
+            // Generate download
+            const link = document.createElement('a');
+            link.download = `Confirmacion_formacion_${userData.firstName}_${userData.lastName}_${userData.trainingDate}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', function(e) {
+            if (document.getElementById('trainingContainer').style.display === 'block') {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    previousSlide();
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    if (confirm('¿Quiere interrumpir la formación y volver a la pantalla de inicio?')) {
+                        restartTraining();
+                    }
+                }
+            }
+        });
+
+        // Prevent context menu and excessive zoom on mobile
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(e) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        console.log('🚀 ELMAR Training System - COMPLETE VERSION (ES) initialized successfully!');
+    </script>
+</body>
+</html>
